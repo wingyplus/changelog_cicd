@@ -9,6 +9,7 @@ defmodule Changelog do
   @nodejs_version "18.15.0"
   @postgresql_version "14.1"
 
+  # Elixir image have some issue with non-arm64 platform when running on Apple M1.
   @runtime_platform "linux/arm64"
   @runtime_platform_alt "linux-arm64"
 
