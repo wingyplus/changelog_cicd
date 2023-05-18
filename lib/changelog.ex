@@ -18,11 +18,6 @@ defmodule Changelog do
   def test() do
     client = Dagger.connect!()
 
-    repo =
-      client
-      |> Dagger.Query.git("https://github.com/thechangelog/changelog.com.git", keep_git_dir: true)
-      |> Dagger.GitRepository.branch("master")
-
     client
     |> container(@runtime_platform)
     |> Dagger.Container.pipeline("test")
@@ -33,7 +28,7 @@ defmodule Changelog do
       @nodejs_version,
       @runtime_platform_alt
     )
-    |> with_app_src(repo)
+    |> with_app_src(client)
     |> with_test_env()
     |> with_app_deps()
     |> with_postgresql(@postgresql_version, "changelog_test", client)
@@ -50,9 +45,15 @@ defmodule Changelog do
     |> Dagger.Container.with_env_variable("TERM", "xterm-256color")
   end
 
-  def with_app_src(%Dagger.Container{} = container, %Dagger.GitRef{} = repository) do
+  def with_app_src(%Dagger.Container{} = container, client) do
+    app_src =
+      client
+      |> Dagger.Query.git("https://github.com/thechangelog/changelog.com.git", keep_git_dir: true)
+      |> Dagger.GitRepository.branch("master")
+      |> Dagger.GitRef.tree()
+
     container
-    |> Dagger.Container.with_directory("/app", Dagger.GitRef.tree(repository))
+    |> Dagger.Container.with_directory("/app", app_src)
     |> Dagger.Container.with_workdir("/app")
   end
 
