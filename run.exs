@@ -1,1 +1,2 @@
-Changelog.test()
+Dagger.connect!()
+|> Changelog.test()

@@ -1,21 +1,12 @@
-# Changelog
+# Changelog CI/CD pipelines
 
-**TODO: Add description**
+This is experimentation about how to apply `dagger_ex` to the existing code base.
 
-## Installation
+## Requires tools
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `changelog_cicd` to your list of dependencies in `mix.exs`:
+- Docker Engine
+- Dagger, if you want a better visualization.
 
-```elixir
-def deps do
-  [
-    {:changelog_cicd, "~> 0.1.0"}
-  ]
-end
-```
+## Running it
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/changelog_cicd>.
-
+TBD

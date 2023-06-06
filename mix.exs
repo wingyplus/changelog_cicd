@@ -21,7 +21,7 @@ defmodule Changelog.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:dagger_ex, github: "wingyplus/dagger_ex", branch: "main"}
+      {:dagger_ex, github: "dagger/dagger", sparse: "sdk/elixir", branch: "main"}
     ]
   end
 end

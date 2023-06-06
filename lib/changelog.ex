@@ -16,9 +16,7 @@ defmodule Changelog do
   @doc """
   Running test.
   """
-  def test() do
-    client = Dagger.connect!()
-
+  def test(client) do
     client
     |> container(@runtime_platform)
     |> Dagger.Container.pipeline("test")
@@ -34,9 +32,7 @@ defmodule Changelog do
     |> with_app_deps()
     |> with_postgresql(@postgresql_version, "changelog_test", client)
     |> with_test()
-    |> Dagger.Container.exit_code()
-
-    Dagger.disconnect(client)
+    |> Dagger.Container.sync()
   end
 
   def container(client, platform) do
